@@ -18,20 +18,20 @@ function submitFunc(event) {
         setTimeout(() => {
 
             if (state === 'fulfilled') {
-                resolve({
-                    message: `✅ Fulfilled promise in ${delay}ms`,
-                    color: 'green',
-                });
+                resolve(delay);
             }
-            reject({
-                message: `❌ Rejected promise in ${delay}ms`,
-                color: 'red',
-            });
+            reject(delay);
 
         }, delay)
     })
-        .then(message => { iziToast.show(message) })
-        .catch(message => { iziToast.show(message) });
+        .then(message => { iziToast.show({
+                    message: `✅ Fulfilled promise in ${message}ms`,
+                    color: 'green',
+                }) })
+        .catch(message => { iziToast.show({
+                message: `❌ Rejected promise in ${message}ms`,
+                color: 'red',
+            }) });
     
 }
   
